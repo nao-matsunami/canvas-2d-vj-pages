@@ -5,25 +5,298 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Radial Type Pulse / Canvas 2D VJ Site</title>
     <style>
-      :root { color-scheme: dark; --bg: #050607; --ink: #f4f7f8; --muted: #9aa7ac; --line: #263236; }
-      * { box-sizing: border-box; }
-      body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-      header { min-height: 104px; padding: 18px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; align-items: center; }
-      h1 { margin: 0; font-size: clamp(22px, 4vw, 42px); line-height: 1; }
-      p { margin: 6px 0 0; color: var(--muted); line-height: 1.6; }
-      a { color: var(--ink); }
-      iframe { display: block; width: 100%; height: calc(100vh - 104px); border: 0; background: #000; }
-      @media (max-width: 760px) { header { display: block; } iframe { height: calc(100vh - 142px); } }
+      :root {
+        color-scheme: dark;
+        --bg: #020303;
+        --ink: #f4fbfb;
+        --muted: #95a8aa;
+        --cyan: #38f5ff;
+        --amber: #ffb33f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      canvas {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        background: #020303;
+      }
+
+      .hud {
+        position: fixed;
+        inset: 18px 18px auto;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        pointer-events: none;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.74);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(21px, 4.2vw, 52px);
+        line-height: 0.96;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: clamp(12px, 1.4vw, 15px);
+        line-height: 1.55;
+      }
+
+      a {
+        pointer-events: auto;
+        align-self: flex-start;
+        min-width: 112px;
+        padding: 10px 13px;
+        border: 1px solid rgba(244, 251, 251, 0.28);
+        background: rgba(2, 3, 3, 0.44);
+        color: var(--ink);
+        font-size: 12px;
+        line-height: 1;
+        text-align: center;
+        text-decoration: none;
+        backdrop-filter: blur(12px);
+      }
+
+      .meter {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        left: 18px;
+        z-index: 2;
+        height: 2px;
+        overflow: hidden;
+        background: rgba(244, 251, 251, 0.13);
+      }
+
+      .meter span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transform-origin: left center;
+        background: linear-gradient(90deg, var(--cyan), #fb46ff, var(--amber));
+        animation: loop-meter 12s linear infinite;
+      }
+
+      @keyframes loop-meter {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+
+      @media (max-width: 680px) {
+        .hud {
+          display: block;
+        }
+
+        a {
+          display: inline-block;
+          margin-top: 12px;
+        }
+      }
     </style>
   </head>
   <body>
-    <header>
+    <canvas id="stage" aria-label="Radial Type Pulse looping canvas visual"></canvas>
+    <div class="hud">
       <div>
         <h1>Radial Type Pulse</h1>
-        <p>2026-08-06 / Canvas 2D VJ Site / 12s loop</p>
+        <p>Canvas 2D standalone sample / 2026-08-06 / locked 12 second loop</p>
       </div>
       <a href="../days/2026-08-06.html">Daily report</a>
-    </header>
-    <iframe src="../live.html?date=2026-08-06" title="Radial Type Pulse live preview"></iframe>
+    </div>
+    <div class="meter" aria-hidden="true"><span></span></div>
+
+    <script>
+      const canvas = document.querySelector("#stage");
+      const ctx = canvas.getContext("2d", { alpha: false });
+      const loopSeconds = 12;
+      const words = ["RADIAL", "TYPE", "PULSE", "DAILY", "LOOP", "VJ", "CANVAS"];
+      const glyphs = "01<>/[]{}+-*".split("");
+      const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
+      let width = 1;
+      let height = 1;
+      let dpr = 1;
+      let start = performance.now();
+
+      window.addEventListener("resize", resize);
+      window.addEventListener("pointermove", (event) => {
+        pointer.tx = (event.clientX / window.innerWidth - 0.5) * 2;
+        pointer.ty = (event.clientY / window.innerHeight - 0.5) * 2;
+      });
+      window.addEventListener("click", () => {
+        start = performance.now();
+      });
+
+      resize();
+      requestAnimationFrame(draw);
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = Math.max(1, Math.floor(window.innerWidth));
+        height = Math.max(1, Math.floor(window.innerHeight));
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function draw(now) {
+        const elapsed = (now - start) / 1000;
+        const cycle = (elapsed % loopSeconds) / loopSeconds;
+        const phase = cycle * Math.PI * 2;
+        pointer.x += (pointer.tx - pointer.x) * 0.045;
+        pointer.y += (pointer.ty - pointer.y) * 0.045;
+
+        ctx.globalCompositeOperation = "source-over";
+        ctx.fillStyle = "#020303";
+        ctx.fillRect(0, 0, width, height);
+
+        const cx = width * (0.5 + pointer.x * 0.045);
+        const cy = height * (0.51 + pointer.y * 0.045);
+        const scale = Math.min(width, height);
+
+        drawBackdrop(cx, cy, scale, phase);
+        drawRings(cx, cy, scale, phase);
+        drawTypeOrbit(cx, cy, scale, phase);
+        drawParticles(cx, cy, scale, phase);
+        drawScan(cx, cy, scale, cycle, phase);
+
+        requestAnimationFrame(draw);
+      }
+
+      function drawBackdrop(cx, cy, scale, phase) {
+        const gradient = ctx.createRadialGradient(cx, cy, scale * 0.02, cx, cy, scale * 0.72);
+        gradient.addColorStop(0, `rgba(44, 248, 255, ${0.2 + Math.sin(phase) * 0.04})`);
+        gradient.addColorStop(0.34, "rgba(138, 38, 255, 0.11)");
+        gradient.addColorStop(0.68, "rgba(255, 121, 53, 0.045)");
+        gradient.addColorStop(1, "rgba(2, 3, 3, 0)");
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, width, height);
+      }
+
+      function drawRings(cx, cy, scale, phase) {
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(Math.sin(phase) * 0.12);
+        ctx.globalCompositeOperation = "lighter";
+
+        for (let i = 0; i < 11; i += 1) {
+          const t = i / 11;
+          const radius = scale * (0.1 + t * 0.58 + Math.sin(phase + t * Math.PI * 2) * 0.012);
+          const dash = scale * (0.015 + t * 0.018);
+          const alpha = 0.12 + (1 - t) * 0.34;
+          ctx.lineWidth = Math.max(1, scale * (0.0018 + t * 0.001));
+          ctx.setLineDash([dash, dash * (1.5 + Math.sin(phase + i) * 0.5)]);
+          ctx.lineDashOffset = -phase * radius * (0.08 + t * 0.05);
+          ctx.strokeStyle = i % 3 === 0
+            ? `rgba(255, 179, 63, ${alpha})`
+            : i % 3 === 1
+              ? `rgba(56, 245, 255, ${alpha})`
+              : `rgba(251, 70, 255, ${alpha})`;
+          ctx.beginPath();
+          ctx.ellipse(0, 0, radius * (1 + t * 0.18), radius * (0.56 + t * 0.08), 0, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+
+        ctx.setLineDash([]);
+        ctx.restore();
+      }
+
+      function drawTypeOrbit(cx, cy, scale, phase) {
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.globalCompositeOperation = "lighter";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.font = `700 ${Math.max(13, scale * 0.035)}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+
+        for (let i = 0; i < 40; i += 1) {
+          const lane = i % 5;
+          const angle = phase * (0.32 + lane * 0.025) + i * 0.72;
+          const radius = scale * (0.18 + lane * 0.082);
+          const x = Math.cos(angle) * radius * 1.42;
+          const y = Math.sin(angle) * radius * 0.78;
+          const pulse = 0.5 + 0.5 * Math.sin(phase * 3 + i);
+          ctx.save();
+          ctx.translate(x, y);
+          ctx.rotate(angle + Math.PI / 2);
+          ctx.fillStyle = i % 4 === 0
+            ? `rgba(255, 179, 63, ${0.24 + pulse * 0.44})`
+            : `rgba(244, 251, 251, ${0.13 + pulse * 0.32})`;
+          ctx.fillText(i % 3 === 0 ? words[(i + lane) % words.length] : glyphs[i % glyphs.length], 0, 0);
+          ctx.restore();
+        }
+
+        ctx.restore();
+      }
+
+      function drawParticles(cx, cy, scale, phase) {
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.globalCompositeOperation = "lighter";
+
+        for (let i = 0; i < 160; i += 1) {
+          const seed = i * 12.9898;
+          const angle = phase * (0.4 + (i % 7) * 0.015) + seed;
+          const radius = scale * (0.08 + ((i * 37) % 100) / 100 * 0.62);
+          const wave = Math.sin(phase * 2 + i) * scale * 0.018;
+          const x = Math.cos(angle) * (radius + wave) * 1.52;
+          const y = Math.sin(angle) * (radius + wave) * 0.86;
+          const size = 1 + ((i * 19) % 4);
+          const alpha = 0.12 + 0.52 * (0.5 + 0.5 * Math.sin(phase * 4 + seed));
+          ctx.fillStyle = i % 5 === 0
+            ? `rgba(255, 179, 63, ${alpha})`
+            : `rgba(56, 245, 255, ${alpha})`;
+          ctx.fillRect(x - size * 0.5, y - size * 0.5, size, size);
+        }
+
+        ctx.restore();
+      }
+
+      function drawScan(cx, cy, scale, cycle, phase) {
+        ctx.save();
+        ctx.globalCompositeOperation = "lighter";
+        const y = height * cycle;
+        const band = ctx.createLinearGradient(0, y - scale * 0.08, 0, y + scale * 0.08);
+        band.addColorStop(0, "rgba(56, 245, 255, 0)");
+        band.addColorStop(0.5, "rgba(56, 245, 255, 0.18)");
+        band.addColorStop(1, "rgba(255, 179, 63, 0)");
+        ctx.fillStyle = band;
+        ctx.fillRect(0, y - scale * 0.08, width, scale * 0.16);
+
+        ctx.strokeStyle = `rgba(244, 251, 251, ${0.12 + Math.sin(phase * 6) * 0.04})`;
+        ctx.lineWidth = 1;
+        for (let row = 0; row < height; row += 7) {
+          ctx.beginPath();
+          ctx.moveTo(0, row + 0.5);
+          ctx.lineTo(width, row + 0.5);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+    </script>
   </body>
 </html>
