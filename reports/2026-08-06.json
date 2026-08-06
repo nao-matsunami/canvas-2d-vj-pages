@@ -20,6 +20,10 @@
     {
       "label": "MDN CanvasRenderingContext2D",
       "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"
+    },
+    {
+      "label": "Source label",
+      "url": "https://example.com/"
     }
   ],
   "sections": [
@@ -40,10 +44,28 @@
       ]
     },
     {
-      "title": "販売用データへの展開",
-      "titleEn": "Sales package route",
-      "body": "Canvas 2D VJ Site はGitHub Pages上では軽量なサンプルとして公開し、MP4、alpha MOV、プロジェクトファイルなどの重い販売データはGumroadまたはPatreonへ置く前提です。",
-      "bodyEn": "Canvas 2D VJ Site is published on GitHub Pages as a lightweight sample. Heavy saleable files such as MP4, alpha MOV, and project files should live on Gumroad or Patreon."
+      "title": "Daily Research 2026-08-06",
+      "titleEn": "Daily Research 2026-08-06",
+      "body": "今日の検索では、軽量なWebプレビューはGitHub Pagesへ置き、販売用の高解像度MP4/MOVは外部販売先へ置く運用を継続する判断にした。",
+      "bodyEn": "今日の検索では、軽量なWebプレビューはGitHub Pagesへ置き、販売用の高解像度MP4/MOVは外部販売先へ置く運用を継続する判断にした。",
+      "links": [
+        {
+          "label": "Source label",
+          "url": "https://example.com/"
+        }
+      ]
+    },
+    {
+      "title": "今日のミニ試作候補",
+      "titleEn": "Today's mini prototype candidate",
+      "body": "Radial Type Pulse を 12 秒でループするVJサンプルとして固定しました。GitHub Pagesでは軽量プレビューを見せ、販売用のMP4やalpha MOVは選抜後にMac miniで固定FPSレンダーします。",
+      "bodyEn": "Radial Type Pulse is fixed as a 12-second looping VJ sample. GitHub Pages carries the lightweight preview, while saleable MP4 and alpha MOV masters should be rendered later on the Mac mini at fixed FPS.",
+      "links": [
+        {
+          "label": "Today's sample",
+          "url": "../outputs/2026-08-06_radial-type-pulse.html"
+        }
+      ]
     }
   ]
 }
