@@ -1,6 +1,6 @@
 const canvas = document.querySelector("#vj-canvas");
 const context = canvas.getContext("2d", { alpha: false });
-const todayIso = localIsoDate(new Date());
+const initialIso = new URLSearchParams(window.location.search).get("date") || localIsoDate(new Date());
 
 let sources = [];
 let drops = [];
@@ -26,7 +26,7 @@ initialize();
 
 async function initialize() {
   await loadData();
-  activePiece = pickPiece(todayIso);
+  activePiece = pickPiece(initialIso);
   renderContent();
   requestAnimationFrame(draw);
 }
