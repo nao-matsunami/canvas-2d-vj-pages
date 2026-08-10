@@ -13,6 +13,29 @@
   ],
   "drops": [
     {
+      "date": "2026-08-10",
+      "title": "Luma Thread Field",
+      "loopSeconds": 8,
+      "palette": [
+        0.92,
+        0.736,
+        0.258,
+        0.256,
+        0.799,
+        0.8
+      ],
+      "copy": "Canvas 2Dだけで描く、発光リングと軌道粒子の無音VJループ。",
+      "why": "Canvas 2Dは線、粒子、タイポグラフィ、走査線のようなVJ素材を素早く作れる。今日のサンプルは整数周期のsin/cosだけで構成し、ループ終端で同じ状態に戻る設計にした。",
+      "research": [
+        {
+          "date": "2026-08-10",
+          "summary": "Canvas 2D VJ Site の日次レポートを追加。追加調査がある日は --notes-file で検索要約と出典を差し込む。",
+          "sources": [],
+          "updatedAt": "2026-08-10T06:27:52.002Z"
+        }
+      ]
+    },
+    {
       "date": "2026-08-06",
       "title": "Radial Type Pulse",
       "loopSeconds": 12,
