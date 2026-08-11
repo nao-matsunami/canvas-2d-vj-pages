@@ -1,0 +1,79 @@
+{
+  "date": "2026-08-12",
+  "headline": "Orbit Mesh Drawing",
+  "headlineEn": "Orbit Mesh Drawing",
+  "summary": "軽量なWebプレビューから販売用レンダーへ展開するためのCanvas 2D生成素材。",
+  "summaryEn": "軽量なWebプレビューから販売用レンダーへ展開するためのCanvas 2D生成素材。",
+  "links": [
+    {
+      "label": "Today's sample",
+      "url": "../outputs/2026-08-12_orbit-mesh-drawing.html"
+    },
+    {
+      "label": "Live preview",
+      "url": "../live.html"
+    },
+    {
+      "label": "MDN Canvas API",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+    },
+    {
+      "label": "MDN CanvasRenderingContext2D",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"
+    },
+    {
+      "label": "MDN Canvas API",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+    },
+    {
+      "label": "MDN CanvasRenderingContext2D",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "非シェーダーサイトとしてCanvas 2Dを選んだ。依存が軽く、ブラウザ上のサンプル表示とMac miniでの固定FPS書き出しの両方へ展開しやすい。",
+      "bodyEn": "非シェーダーサイトとしてCanvas 2Dを選んだ。依存が軽く、ブラウザ上のサンプル表示とMac miniでの固定FPS書き出しの両方へ展開しやすい。",
+      "links": [
+        {
+          "label": "MDN Canvas API",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+        },
+        {
+          "label": "MDN CanvasRenderingContext2D",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"
+        }
+      ]
+    },
+    {
+      "title": "Daily Research 2026-08-12",
+      "titleEn": "Daily Research 2026-08-12",
+      "body": "今日はCanvas 2Dの合成、線、グラデーションを中心に見た。シェーダーより構造が読みやすく、線や粒子のVJ素材を日次で量産するパイプラインに向く。",
+      "bodyEn": "今日はCanvas 2Dの合成、線、グラデーションを中心に見た。シェーダーより構造が読みやすく、線や粒子のVJ素材を日次で量産するパイプラインに向く。",
+      "links": [
+        {
+          "label": "MDN Canvas API",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+        },
+        {
+          "label": "MDN CanvasRenderingContext2D",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"
+        }
+      ]
+    },
+    {
+      "title": "今日のミニ試作候補",
+      "titleEn": "Today's mini prototype candidate",
+      "body": "Orbit Mesh Drawing を 16 秒でループするVJサンプルとして固定しました。GitHub Pagesでは軽量プレビューを見せ、販売用のMP4やalpha MOVは選抜後にMac miniで固定FPSレンダーします。",
+      "bodyEn": "Orbit Mesh Drawing is fixed as a 16-second looping VJ sample. GitHub Pages carries the lightweight preview, while saleable MP4 and alpha MOV masters should be rendered later on the Mac mini at fixed FPS.",
+      "links": [
+        {
+          "label": "Today's sample",
+          "url": "../outputs/2026-08-12_orbit-mesh-drawing.html"
+        }
+      ]
+    }
+  ]
+}
