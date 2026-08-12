@@ -13,6 +13,40 @@
   ],
   "drops": [
     {
+      "date": "2026-08-13",
+      "title": "Radial Type Pulse",
+      "loopSeconds": 12,
+      "palette": [
+        0.258,
+        0.92,
+        0.536,
+        0.637,
+        0.256,
+        0.8
+      ],
+      "copy": "Canvas 2Dだけで描く、発光リングと軌道粒子の無音VJループ。",
+      "why": "Canvas 2Dは線、粒子、タイポグラフィ、走査線のようなVJ素材を素早く作れる。今日のサンプルは整数周期のsin/cosだけで構成し、ループ終端で同じ状態に戻る設計にした。",
+      "research": [
+        {
+          "date": "2026-08-13",
+          "summary": "今日はCanvasの録画前提で、固定秒数のループ設計を優先した。整数周期の三角関数で状態を閉じると、RECボタンやMac mini側の固定FPS書き出しへつなげやすい。",
+          "sources": [
+            {
+              "label": "MDN requestAnimationFrame",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame",
+              "note": "ブラウザアニメーションの基本タイミング確認。"
+            },
+            {
+              "label": "MDN MediaStream Recording API",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API",
+              "note": "ブラウザ録画導線の確認に使う。"
+            }
+          ],
+          "updatedAt": "2026-08-12T21:45:08.493Z"
+        }
+      ]
+    },
+    {
       "date": "2026-08-12",
       "title": "Orbit Mesh Drawing",
       "loopSeconds": 16,
