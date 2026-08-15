@@ -13,6 +13,40 @@
   ],
   "drops": [
     {
+      "date": "2026-08-16",
+      "title": "Radial Type Pulse",
+      "loopSeconds": 16,
+      "palette": [
+        0.529,
+        0.92,
+        0.258,
+        0.256,
+        0.327,
+        0.8
+      ],
+      "copy": "GLSLを使わず、描画コマンドと日付シードだけで構成する抽象ループ。",
+      "why": "描画コマンドベースの軽量な映像生成を試す。販売用マスターは後でMac mini上の固定FPSレンダリングへ接続する前提にしている。",
+      "research": [
+        {
+          "date": "2026-08-16",
+          "summary": "今日はCanvas 2Dの合成、線、グラデーションを中心に見た。シェーダーより構造が読みやすく、線や粒子のVJ素材を日次で量産するパイプラインに向く。",
+          "sources": [
+            {
+              "label": "MDN Canvas API",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API",
+              "note": "Canvas 2D制作の起点。"
+            },
+            {
+              "label": "MDN CanvasRenderingContext2D",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
+              "note": "描画状態、パス、合成の確認に使う。"
+            }
+          ],
+          "updatedAt": "2026-08-15T21:45:10.488Z"
+        }
+      ]
+    },
+    {
       "date": "2026-08-15",
       "title": "Orbit Mesh Drawing",
       "loopSeconds": 20,
