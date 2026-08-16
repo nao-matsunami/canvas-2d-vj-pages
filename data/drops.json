@@ -13,6 +13,40 @@
   ],
   "drops": [
     {
+      "date": "2026-08-17",
+      "title": "Scanline Particle Well",
+      "loopSeconds": 12,
+      "palette": [
+        0.361,
+        0.258,
+        0.92,
+        0.8,
+        0.493,
+        0.256
+      ],
+      "copy": "軽量なWebプレビューから販売用レンダーへ展開するためのCanvas 2D生成素材。",
+      "why": "非シェーダーサイトとしてCanvas 2Dを選んだ。依存が軽く、ブラウザ上のサンプル表示とMac miniでの固定FPS書き出しの両方へ展開しやすい。",
+      "research": [
+        {
+          "date": "2026-08-17",
+          "summary": "今日はCanvasの録画前提で、固定秒数のループ設計を優先した。整数周期の三角関数で状態を閉じると、RECボタンやMac mini側の固定FPS書き出しへつなげやすい。",
+          "sources": [
+            {
+              "label": "MDN requestAnimationFrame",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame",
+              "note": "ブラウザアニメーションの基本タイミング確認。"
+            },
+            {
+              "label": "MDN MediaStream Recording API",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API",
+              "note": "ブラウザ録画導線の確認に使う。"
+            }
+          ],
+          "updatedAt": "2026-08-16T21:45:06.069Z"
+        }
+      ]
+    },
+    {
       "date": "2026-08-16",
       "title": "Radial Type Pulse",
       "loopSeconds": 16,
