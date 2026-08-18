@@ -1,0 +1,79 @@
+{
+  "date": "2026-08-19",
+  "headline": "Scanline Particle Well",
+  "headlineEn": "Scanline Particle Well",
+  "summary": "Canvas 2Dだけで描く、発光リングと軌道粒子の無音VJループ。",
+  "summaryEn": "Canvas 2Dだけで描く、発光リングと軌道粒子の無音VJループ。",
+  "links": [
+    {
+      "label": "Today's sample",
+      "url": "../outputs/2026-08-19_scanline-particle-well.html"
+    },
+    {
+      "label": "Live preview",
+      "url": "../live.html"
+    },
+    {
+      "label": "MDN Canvas API",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+    },
+    {
+      "label": "MDN CanvasRenderingContext2D",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"
+    },
+    {
+      "label": "MDN requestAnimationFrame",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame"
+    },
+    {
+      "label": "MDN MediaStream Recording API",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "Canvas 2Dは線、粒子、タイポグラフィ、走査線のようなVJ素材を素早く作れる。今日のサンプルは整数周期のsin/cosだけで構成し、ループ終端で同じ状態に戻る設計にした。",
+      "bodyEn": "Canvas 2Dは線、粒子、タイポグラフィ、走査線のようなVJ素材を素早く作れる。今日のサンプルは整数周期のsin/cosだけで構成し、ループ終端で同じ状態に戻る設計にした。",
+      "links": [
+        {
+          "label": "MDN Canvas API",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+        },
+        {
+          "label": "MDN CanvasRenderingContext2D",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"
+        }
+      ]
+    },
+    {
+      "title": "Daily Research 2026-08-19",
+      "titleEn": "Daily Research 2026-08-19",
+      "body": "今日はCanvasの録画前提で、固定秒数のループ設計を優先した。整数周期の三角関数で状態を閉じると、RECボタンやMac mini側の固定FPS書き出しへつなげやすい。",
+      "bodyEn": "今日はCanvasの録画前提で、固定秒数のループ設計を優先した。整数周期の三角関数で状態を閉じると、RECボタンやMac mini側の固定FPS書き出しへつなげやすい。",
+      "links": [
+        {
+          "label": "MDN requestAnimationFrame",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame"
+        },
+        {
+          "label": "MDN MediaStream Recording API",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API"
+        }
+      ]
+    },
+    {
+      "title": "今日のミニ試作候補",
+      "titleEn": "Today's mini prototype candidate",
+      "body": "Scanline Particle Well を 20 秒でループするVJサンプルとして固定しました。GitHub Pagesでは軽量プレビューを見せ、販売用のMP4やalpha MOVは選抜後にMac miniで固定FPSレンダーします。",
+      "bodyEn": "Scanline Particle Well is fixed as a 20-second looping VJ sample. GitHub Pages carries the lightweight preview, while saleable MP4 and alpha MOV masters should be rendered later on the Mac mini at fixed FPS.",
+      "links": [
+        {
+          "label": "Today's sample",
+          "url": "../outputs/2026-08-19_scanline-particle-well.html"
+        }
+      ]
+    }
+  ]
+}
