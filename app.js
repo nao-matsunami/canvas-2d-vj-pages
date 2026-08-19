@@ -62,6 +62,7 @@ function draw(now) {
   const phase = cycle * Math.PI * 2;
   const minSide = Math.min(width, height);
   const seed = hash(`${activePiece.date}:${activePiece.title}`);
+  const variant = pieceVariant(activePiece);
   const paletteA = rgb(activePiece.palette.slice(0, 3));
   const paletteB = rgb(activePiece.palette.slice(3, 6));
 
@@ -106,6 +107,8 @@ function draw(now) {
     context.fill();
   }
 
+  drawCanvasVariant(context, variant, activePiece, phase, seed, minSide, paletteA, paletteB);
+
   context.globalCompositeOperation = "source-over";
   context.globalAlpha = 0.24;
   context.strokeStyle = "rgba(244,243,237,0.42)";
@@ -120,6 +123,62 @@ function draw(now) {
   context.restore();
 
   animationId = requestAnimationFrame(draw);
+}
+
+function drawCanvasVariant(target, variant, piece, phase, seed, minSide, paletteA, paletteB) {
+  target.save();
+  target.globalCompositeOperation = "lighter";
+  if (variant === 0) {
+    target.strokeStyle = `rgba(${paletteA.join(", ")}, 0.42)`;
+    target.lineWidth = Math.max(1, minSide * 0.004);
+    for (let i = 0; i < 22; i += 1) {
+      const t = i / 21;
+      target.beginPath();
+      for (let x = -minSide * 0.52; x <= minSide * 0.52; x += minSide * 0.04) {
+        const y = Math.sin(x * 0.012 + phase * 2 + i * 0.45) * minSide * (0.04 + t * 0.16) + (t - 0.5) * minSide * 0.7;
+        if (x === -minSide * 0.52) target.moveTo(x, y);
+        else target.lineTo(x, y);
+      }
+      target.stroke();
+    }
+  } else if (variant === 1) {
+    for (let i = 0; i < 18; i += 1) {
+      const angle = phase + i / 18 * Math.PI * 2;
+      target.strokeStyle = i % 2 ? `rgba(${paletteA.join(", ")}, 0.34)` : `rgba(${paletteB.join(", ")}, 0.34)`;
+      target.lineWidth = Math.max(1, minSide * 0.003);
+      target.beginPath();
+      target.moveTo(Math.cos(angle) * minSide * 0.12, Math.sin(angle) * minSide * 0.12);
+      target.quadraticCurveTo(
+        Math.cos(angle + phase) * minSide * 0.28,
+        Math.sin(angle - phase) * minSide * 0.24,
+        Math.cos(angle) * minSide * 0.58,
+        Math.sin(angle) * minSide * 0.46,
+      );
+      target.stroke();
+    }
+  } else if (variant === 2) {
+    target.strokeStyle = `rgba(${paletteB.join(", ")}, 0.38)`;
+    target.lineWidth = Math.max(1, minSide * 0.0025);
+    for (let y = -5; y <= 5; y += 1) {
+      for (let x = -7; x <= 7; x += 1) {
+        const pulse = 0.5 + 0.5 * Math.sin(phase * 2 + x * 0.8 + y * 0.6 + seed * 0.01);
+        const s = minSide * (0.018 + pulse * 0.034);
+        target.strokeRect(x * minSide * 0.075 - s / 2, y * minSide * 0.075 - s / 2, s, s);
+      }
+    }
+  } else {
+    target.strokeStyle = `rgba(${paletteA.join(", ")}, 0.32)`;
+    target.lineWidth = Math.max(1, minSide * 0.0035);
+    for (let i = 0; i < 34; i += 1) {
+      const t = i / 34;
+      const r = minSide * (0.14 + t * 0.44);
+      const a = phase * (1.2 + (i % 5) * 0.08) + t * Math.PI * 2;
+      target.beginPath();
+      target.arc(Math.cos(a) * r * 0.18, Math.sin(a) * r * 0.14, r, a, a + Math.PI * (0.18 + t * 0.42));
+      target.stroke();
+    }
+  }
+  target.restore();
 }
 
 function resize() {
@@ -481,11 +540,20 @@ function pickPiece(date) {
   };
 }
 
+function pieceVariant(piece) {
+  const title = String(piece.title || "").toLowerCase();
+  if (title.includes("thread") || title.includes("luma")) return 0;
+  if (title.includes("radial") || title.includes("orbit")) return 1;
+  if (title.includes("glyph") || title.includes("scanline")) return 2;
+  return hash(`${piece.date}:${piece.title}:canvas`) % 4;
+}
+
 function makeRecipe(piece) {
   return `// Daily Canvas 2D VJ Loop
 // Date: ${piece.date}
 // Title: ${piece.title}
 // Loop seconds: ${piece.loopSeconds}
+// Variant: ${pieceVariant(piece)}
 // Palette A: rgb(${rgb(piece.palette.slice(0, 3))})
 // Palette B: rgb(${rgb(piece.palette.slice(3, 6))})
 // Renderer: rings, orbiting glow particles, scanline mesh
