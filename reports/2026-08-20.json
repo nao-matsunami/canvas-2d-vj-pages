@@ -2,8 +2,8 @@
   "date": "2026-08-20",
   "headline": "Scanline Particle Well",
   "headlineEn": "Scanline Particle Well",
-  "summary": "Canvas 2Dだけで描く、発光リングと軌道粒子の無音VJループ。",
-  "summaryEn": "Canvas 2Dだけで描く、発光リングと軌道粒子の無音VJループ。",
+  "summary": "Canvas 2Dの文字描画とバー表現を使う、情報グラフィック系VJループ。",
+  "summaryEn": "Canvas 2Dの文字描画とバー表現を使う、情報グラフィック系VJループ。",
   "links": [
     {
       "label": "Today's sample",
@@ -34,8 +34,8 @@
     {
       "title": "今日の制作メモ",
       "titleEn": "Production note",
-      "body": "Canvas 2Dは線、粒子、タイポグラフィ、走査線のようなVJ素材を素早く作れる。今日のサンプルは整数周期のsin/cosだけで構成し、ループ終端で同じ状態に戻る設計にした。",
-      "bodyEn": "Canvas 2Dは線、粒子、タイポグラフィ、走査線のようなVJ素材を素早く作れる。今日のサンプルは整数周期のsin/cosだけで構成し、ループ終端で同じ状態に戻る設計にした。",
+      "body": "抽象発光とは別文脈で、文字、バー、端末表示のような素材ラインを作る。イベント名やロゴ展開にもつなげやすい。",
+      "bodyEn": "抽象発光とは別文脈で、文字、バー、端末表示のような素材ラインを作る。イベント名やロゴ展開にもつなげやすい。",
       "links": [
         {
           "label": "MDN Canvas API",

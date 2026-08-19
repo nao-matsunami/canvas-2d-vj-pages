@@ -63,6 +63,7 @@ function draw(now) {
   const minSide = Math.min(width, height);
   const seed = hash(`${activePiece.date}:${activePiece.title}`);
   const variant = pieceVariant(activePiece);
+  const engine = pieceEngine(activePiece);
   const paletteA = rgb(activePiece.palette.slice(0, 3));
   const paletteB = rgb(activePiece.palette.slice(3, 6));
 
@@ -72,6 +73,13 @@ function draw(now) {
   context.save();
   context.translate(width / 2, height / 2);
   context.globalCompositeOperation = "lighter";
+
+  if (engine !== "orbital-rings") {
+    drawCanvasEngine(context, engine, activePiece, phase, seed, minSide, paletteA, paletteB);
+    context.restore();
+    animationId = requestAnimationFrame(draw);
+    return;
+  }
 
   const rings = 7 + (seed % 5);
   for (let i = 0; i < rings; i += 1) {
@@ -123,6 +131,54 @@ function draw(now) {
   context.restore();
 
   animationId = requestAnimationFrame(draw);
+}
+
+function drawCanvasEngine(target, engine, piece, phase, seed, minSide, paletteA, paletteB) {
+  if (engine === "type-signal") {
+    target.font = `${Math.max(14, minSide * 0.046)}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+    target.textAlign = "center";
+    target.textBaseline = "middle";
+    for (let row = -4; row <= 4; row += 1) {
+      const offset = Math.sin(phase + row) * minSide * 0.06;
+      target.globalAlpha = 0.18 + (row + 4) * 0.018;
+      target.fillStyle = row % 2 ? `rgb(${paletteA.join(", ")})` : `rgb(${paletteB.join(", ")})`;
+      target.fillText(piece.title.toUpperCase().slice(0, 18), offset, row * minSide * 0.085);
+    }
+    for (let i = 0; i < 42; i += 1) {
+      const y = (i / 41 - 0.5) * minSide * 0.95;
+      target.globalAlpha = 0.16 + 0.18 * Math.sin(phase * 3 + i);
+      target.fillRect(-minSide * 0.55, y, minSide * (0.12 + ((i * 17 + seed) % 100) / 100 * 0.78), Math.max(1, minSide * 0.006));
+    }
+    return;
+  }
+
+  if (engine === "raster-cells") {
+    const cols = 15;
+    const rows = 10;
+    for (let y = 0; y < rows; y += 1) {
+      for (let x = 0; x < cols; x += 1) {
+        const wave = 0.5 + 0.5 * Math.sin(phase * 2 + x * 0.7 + y * 0.9 + seed * 0.01);
+        const sx = (x / (cols - 1) - 0.5) * minSide * 1.04;
+        const sy = (y / (rows - 1) - 0.5) * minSide * 0.68;
+        target.globalAlpha = 0.12 + wave * 0.48;
+        target.fillStyle = (x + y) % 2 ? `rgb(${paletteA.join(", ")})` : `rgb(${paletteB.join(", ")})`;
+        target.fillRect(sx - minSide * 0.018, sy - minSide * 0.018, minSide * (0.018 + wave * 0.05), minSide * (0.018 + wave * 0.05));
+      }
+    }
+    return;
+  }
+
+  for (let i = 0; i < 64; i += 1) {
+    const t = i / 64;
+    const angle = phase * (1.0 + (i % 7) * 0.03) + t * Math.PI * 2;
+    const r = minSide * (0.08 + t * 0.46);
+    target.strokeStyle = i % 2 ? `rgba(${paletteA.join(", ")}, 0.28)` : `rgba(${paletteB.join(", ")}, 0.28)`;
+    target.lineWidth = Math.max(1, minSide * 0.0025);
+    target.beginPath();
+    target.moveTo(Math.cos(angle) * r, Math.sin(angle) * r * 0.62);
+    target.quadraticCurveTo(Math.cos(angle + phase) * r * 0.3, Math.sin(angle - phase) * r, Math.cos(angle + 1.7) * r, Math.sin(angle + 1.7) * r * 0.62);
+    target.stroke();
+  }
 }
 
 function drawCanvasVariant(target, variant, piece, phase, seed, minSide, paletteA, paletteB) {
@@ -548,11 +604,16 @@ function pieceVariant(piece) {
   return hash(`${piece.date}:${piece.title}:canvas`) % 4;
 }
 
+function pieceEngine(piece) {
+  return piece.engine || "orbital-rings";
+}
+
 function makeRecipe(piece) {
   return `// Daily Canvas 2D VJ Loop
 // Date: ${piece.date}
 // Title: ${piece.title}
 // Loop seconds: ${piece.loopSeconds}
+// Engine: ${pieceEngine(piece)}
 // Variant: ${pieceVariant(piece)}
 // Palette A: rgb(${rgb(piece.palette.slice(0, 3))})
 // Palette B: rgb(${rgb(piece.palette.slice(3, 6))})

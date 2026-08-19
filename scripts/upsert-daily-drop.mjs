@@ -8,24 +8,31 @@ const dropsPath = path.join(rootDir, "data", "drops.json");
 const dateArg = process.argv.find((arg) => arg.startsWith("--date="));
 const targetDate = dateArg ? dateArg.slice("--date=".length) : localIsoDate(new Date());
 
-const titles = [
-  "Radial Type Pulse",
-  "Orbit Mesh Drawing",
-  "Signal Glyph Sweep",
-  "Luma Thread Field",
-  "Scanline Particle Well",
-];
-
-const copyLines = [
-  "Canvas 2Dだけで描く、発光リングと軌道粒子の無音VJループ。",
-  "軽量なWebプレビューから販売用レンダーへ展開するためのCanvas 2D生成素材。",
-  "GLSLを使わず、描画コマンドと日付シードだけで構成する抽象ループ。",
-];
-
-const whyLines = [
-  "Canvas 2Dは線、粒子、タイポグラフィ、走査線のようなVJ素材を素早く作れる。今日のサンプルは整数周期のsin/cosだけで構成し、ループ終端で同じ状態に戻る設計にした。",
-  "非シェーダーサイトとしてCanvas 2Dを選んだ。依存が軽く、ブラウザ上のサンプル表示とMac miniでの固定FPS書き出しの両方へ展開しやすい。",
-  "描画コマンドベースの軽量な映像生成を試す。販売用マスターは後でMac mini上の固定FPSレンダリングへ接続する前提にしている。",
+const engines = [
+  {
+    slug: "orbital-rings",
+    titles: ["Radial Type Pulse", "Orbit Mesh Drawing", "Signal Glyph Sweep", "Luma Thread Field", "Scanline Particle Well"],
+    copy: "Canvas 2Dだけで描く、発光リングと軌道粒子の無音VJループ。",
+    why: "既存系列として、リング、粒子、走査線を中心に増やす。軽量でRECや固定FPS書き出しに接続しやすい。",
+  },
+  {
+    slug: "type-signal",
+    titles: ["Canvas Type Scanner", "Monospace Signal Wall", "Ticker Glyph Field", "Terminal Sweep Plate"],
+    copy: "Canvas 2Dの文字描画とバー表現を使う、情報グラフィック系VJループ。",
+    why: "抽象発光とは別文脈で、文字、バー、端末表示のような素材ラインを作る。イベント名やロゴ展開にもつなげやすい。",
+  },
+  {
+    slug: "raster-cells",
+    titles: ["Raster Cell Pulse", "Pixel Tile Bloom", "Modular Light Matrix", "Block Signal Gate"],
+    copy: "矩形セルとラスター構造を主役にしたCanvas 2Dループ。",
+    why: "粒子やリングではなく、矩形セルの点滅と配置で構成する。LED壁や低解像度スクリーンに合う素材として分ける。",
+  },
+  {
+    slug: "bezier-threads",
+    titles: ["Bezier Thread Study", "Ribbon Curve Drift", "Spline Signal Bloom", "Threaded Orbit Score"],
+    copy: "ベジェ曲線と糸状の軌道を主役にしたCanvas 2Dループ。",
+    why: "Canvas 2Dのパス描画を活かし、線の流れと曲線構造を別エンジンにする。既存のリング系列とは違う有機的な動きが出る。",
+  },
 ];
 
 const data = JSON.parse(await fs.readFile(dropsPath, "utf8"));
@@ -37,15 +44,17 @@ if (existing) {
 }
 
 const seed = hash(targetDate);
+const engine = engines[seed % engines.length];
 const hueA = fract(seed * 0.0183);
 const hueB = fract(hueA + 0.38);
 const drop = {
   date: targetDate,
-  title: titles[seed % titles.length],
+  title: engine.titles[seed % engine.titles.length],
+  engine: engine.slug,
   loopSeconds: [8, 12, 16, 20][seed % 4],
   palette: [...hsv(hueA, 0.72, 0.92), ...hsv(hueB, 0.68, 0.8)],
-  copy: copyLines[seed % copyLines.length],
-  why: whyLines[seed % whyLines.length],
+  copy: engine.copy,
+  why: engine.why,
 };
 
 data.drops.unshift(drop);
