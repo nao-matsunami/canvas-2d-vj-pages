@@ -1,0 +1,79 @@
+{
+  "date": "2026-08-21",
+  "headline": "Luma Thread Field",
+  "headlineEn": "Luma Thread Field",
+  "summary": "Canvas 2Dだけで描く、発光リングと軌道粒子の無音VJループ。",
+  "summaryEn": "Canvas 2Dだけで描く、発光リングと軌道粒子の無音VJループ。",
+  "links": [
+    {
+      "label": "Today's sample",
+      "url": "../outputs/2026-08-21_luma-thread-field.html"
+    },
+    {
+      "label": "Live preview",
+      "url": "../live.html"
+    },
+    {
+      "label": "MDN Canvas API",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+    },
+    {
+      "label": "MDN CanvasRenderingContext2D",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"
+    },
+    {
+      "label": "MDN Canvas API",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+    },
+    {
+      "label": "MDN CanvasRenderingContext2D",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "既存系列として、リング、粒子、走査線を中心に増やす。軽量でRECや固定FPS書き出しに接続しやすい。",
+      "bodyEn": "既存系列として、リング、粒子、走査線を中心に増やす。軽量でRECや固定FPS書き出しに接続しやすい。",
+      "links": [
+        {
+          "label": "MDN Canvas API",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+        },
+        {
+          "label": "MDN CanvasRenderingContext2D",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"
+        }
+      ]
+    },
+    {
+      "title": "Daily Research 2026-08-21",
+      "titleEn": "Daily Research 2026-08-21",
+      "body": "今日はCanvas 2Dの合成、線、グラデーションを中心に見た。シェーダーより構造が読みやすく、線や粒子のVJ素材を日次で量産するパイプラインに向く。",
+      "bodyEn": "今日はCanvas 2Dの合成、線、グラデーションを中心に見た。シェーダーより構造が読みやすく、線や粒子のVJ素材を日次で量産するパイプラインに向く。",
+      "links": [
+        {
+          "label": "MDN Canvas API",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+        },
+        {
+          "label": "MDN CanvasRenderingContext2D",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"
+        }
+      ]
+    },
+    {
+      "title": "今日のミニ試作候補",
+      "titleEn": "Today's mini prototype candidate",
+      "body": "Luma Thread Field を 8 秒でループするVJサンプルとして固定しました。GitHub Pagesでは軽量プレビューを見せ、販売用のMP4やalpha MOVは選抜後にMac miniで固定FPSレンダーします。",
+      "bodyEn": "Luma Thread Field is fixed as a 8-second looping VJ sample. GitHub Pages carries the lightweight preview, while saleable MP4 and alpha MOV masters should be rendered later on the Mac mini at fixed FPS.",
+      "links": [
+        {
+          "label": "Today's sample",
+          "url": "../outputs/2026-08-21_luma-thread-field.html"
+        }
+      ]
+    }
+  ]
+}

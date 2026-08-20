@@ -13,6 +13,41 @@
   ],
   "drops": [
     {
+      "date": "2026-08-21",
+      "title": "Luma Thread Field",
+      "engine": "orbital-rings",
+      "loopSeconds": 8,
+      "palette": [
+        0.92,
+        0.258,
+        0.797,
+        0.546,
+        0.8,
+        0.256
+      ],
+      "copy": "Canvas 2Dだけで描く、発光リングと軌道粒子の無音VJループ。",
+      "why": "既存系列として、リング、粒子、走査線を中心に増やす。軽量でRECや固定FPS書き出しに接続しやすい。",
+      "research": [
+        {
+          "date": "2026-08-21",
+          "summary": "今日はCanvas 2Dの合成、線、グラデーションを中心に見た。シェーダーより構造が読みやすく、線や粒子のVJ素材を日次で量産するパイプラインに向く。",
+          "sources": [
+            {
+              "label": "MDN Canvas API",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API",
+              "note": "Canvas 2D制作の起点。"
+            },
+            {
+              "label": "MDN CanvasRenderingContext2D",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
+              "note": "描画状態、パス、合成の確認に使う。"
+            }
+          ],
+          "updatedAt": "2026-08-20T21:45:08.481Z"
+        }
+      ]
+    },
+    {
       "date": "2026-08-20",
       "title": "Scanline Particle Well",
       "engine": "type-signal",
