@@ -1,0 +1,79 @@
+{
+  "date": "2026-08-22",
+  "headline": "Threaded Orbit Score",
+  "headlineEn": "Threaded Orbit Score",
+  "summary": "ベジェ曲線と糸状の軌道を主役にしたCanvas 2Dループ。",
+  "summaryEn": "ベジェ曲線と糸状の軌道を主役にしたCanvas 2Dループ。",
+  "links": [
+    {
+      "label": "Today's sample",
+      "url": "../outputs/2026-08-22_threaded-orbit-score.html"
+    },
+    {
+      "label": "Live preview",
+      "url": "../live.html"
+    },
+    {
+      "label": "MDN Canvas API",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+    },
+    {
+      "label": "MDN CanvasRenderingContext2D",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"
+    },
+    {
+      "label": "MDN requestAnimationFrame",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame"
+    },
+    {
+      "label": "MDN MediaStream Recording API",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "Canvas 2Dのパス描画を活かし、線の流れと曲線構造を別エンジンにする。既存のリング系列とは違う有機的な動きが出る。",
+      "bodyEn": "Canvas 2Dのパス描画を活かし、線の流れと曲線構造を別エンジンにする。既存のリング系列とは違う有機的な動きが出る。",
+      "links": [
+        {
+          "label": "MDN Canvas API",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+        },
+        {
+          "label": "MDN CanvasRenderingContext2D",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"
+        }
+      ]
+    },
+    {
+      "title": "Daily Research 2026-08-22",
+      "titleEn": "Daily Research 2026-08-22",
+      "body": "今日はCanvasの録画前提で、固定秒数のループ設計を優先した。整数周期の三角関数で状態を閉じると、RECボタンやMac mini側の固定FPS書き出しへつなげやすい。",
+      "bodyEn": "今日はCanvasの録画前提で、固定秒数のループ設計を優先した。整数周期の三角関数で状態を閉じると、RECボタンやMac mini側の固定FPS書き出しへつなげやすい。",
+      "links": [
+        {
+          "label": "MDN requestAnimationFrame",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame"
+        },
+        {
+          "label": "MDN MediaStream Recording API",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API"
+        }
+      ]
+    },
+    {
+      "title": "今日のミニ試作候補",
+      "titleEn": "Today's mini prototype candidate",
+      "body": "Threaded Orbit Score を 20 秒でループするVJサンプルとして固定しました。GitHub Pagesでは軽量プレビューを見せ、販売用のMP4やalpha MOVは選抜後にMac miniで固定FPSレンダーします。",
+      "bodyEn": "Threaded Orbit Score is fixed as a 20-second looping VJ sample. GitHub Pages carries the lightweight preview, while saleable MP4 and alpha MOV masters should be rendered later on the Mac mini at fixed FPS.",
+      "links": [
+        {
+          "label": "Today's sample",
+          "url": "../outputs/2026-08-22_threaded-orbit-score.html"
+        }
+      ]
+    }
+  ]
+}
