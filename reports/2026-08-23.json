@@ -1,0 +1,79 @@
+{
+  "date": "2026-08-23",
+  "headline": "Modular Light Matrix",
+  "headlineEn": "Modular Light Matrix",
+  "summary": "矩形セルとラスター構造を主役にしたCanvas 2Dループ。",
+  "summaryEn": "矩形セルとラスター構造を主役にしたCanvas 2Dループ。",
+  "links": [
+    {
+      "label": "Today's sample",
+      "url": "../outputs/2026-08-23_modular-light-matrix.html"
+    },
+    {
+      "label": "Live preview",
+      "url": "../live.html"
+    },
+    {
+      "label": "MDN Canvas API",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+    },
+    {
+      "label": "MDN CanvasRenderingContext2D",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"
+    },
+    {
+      "label": "MDN Canvas API",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+    },
+    {
+      "label": "MDN CanvasRenderingContext2D",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "粒子やリングではなく、矩形セルの点滅と配置で構成する。LED壁や低解像度スクリーンに合う素材として分ける。",
+      "bodyEn": "粒子やリングではなく、矩形セルの点滅と配置で構成する。LED壁や低解像度スクリーンに合う素材として分ける。",
+      "links": [
+        {
+          "label": "MDN Canvas API",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+        },
+        {
+          "label": "MDN CanvasRenderingContext2D",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"
+        }
+      ]
+    },
+    {
+      "title": "Daily Research 2026-08-23",
+      "titleEn": "Daily Research 2026-08-23",
+      "body": "今日はCanvas 2Dの合成、線、グラデーションを中心に見た。シェーダーより構造が読みやすく、線や粒子のVJ素材を日次で量産するパイプラインに向く。",
+      "bodyEn": "今日はCanvas 2Dの合成、線、グラデーションを中心に見た。シェーダーより構造が読みやすく、線や粒子のVJ素材を日次で量産するパイプラインに向く。",
+      "links": [
+        {
+          "label": "MDN Canvas API",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+        },
+        {
+          "label": "MDN CanvasRenderingContext2D",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"
+        }
+      ]
+    },
+    {
+      "title": "今日のミニ試作候補",
+      "titleEn": "Today's mini prototype candidate",
+      "body": "Modular Light Matrix を 16 秒でループするVJサンプルとして固定しました。GitHub Pagesでは軽量プレビューを見せ、販売用のMP4やalpha MOVは選抜後にMac miniで固定FPSレンダーします。",
+      "bodyEn": "Modular Light Matrix is fixed as a 16-second looping VJ sample. GitHub Pages carries the lightweight preview, while saleable MP4 and alpha MOV masters should be rendered later on the Mac mini at fixed FPS.",
+      "links": [
+        {
+          "label": "Today's sample",
+          "url": "../outputs/2026-08-23_modular-light-matrix.html"
+        }
+      ]
+    }
+  ]
+}
