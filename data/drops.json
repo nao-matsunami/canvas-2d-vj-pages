@@ -13,6 +13,41 @@
   ],
   "drops": [
     {
+      "date": "2026-11-28",
+      "title": "Threaded Orbit Score",
+      "engine": "bezier-threads",
+      "loopSeconds": 20,
+      "palette": [
+        0.646,
+        0.258,
+        0.92,
+        0.8,
+        0.728,
+        0.256
+      ],
+      "copy": "ベジェ曲線と糸状の軌道を主役にしたCanvas 2Dループ。",
+      "why": "Canvas 2Dのパス描画を活かし、線の流れと曲線構造を別エンジンにする。既存のリング系列とは違う有機的な動きが出る。",
+      "research": [
+        {
+          "date": "2026-11-28",
+          "summary": "今日はCanvasの録画前提で、固定秒数のループ設計を優先した。整数周期の三角関数で状態を閉じると、RECボタンやMac mini側の固定FPS書き出しへつなげやすい。",
+          "sources": [
+            {
+              "label": "MDN requestAnimationFrame",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame",
+              "note": "ブラウザアニメーションの基本タイミング確認。"
+            },
+            {
+              "label": "MDN MediaStream Recording API",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API",
+              "note": "ブラウザ録画導線の確認に使う。"
+            }
+          ],
+          "updatedAt": "2026-11-27T21:45:40.369Z"
+        }
+      ]
+    },
+    {
       "date": "2026-11-27",
       "title": "Orbit Mesh Drawing",
       "engine": "orbital-rings",
